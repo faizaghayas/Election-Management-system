@@ -1,0 +1,164 @@
+﻿@model Vision_Project.Models.Party
+
+@{
+    ViewBag.Title = "Add Parties";
+    Layout = "~/Views/shared/Adminlayout.cshtml";
+}
+
+<style>
+    .card_info {
+        width: 100%;
+        box-shadow: #01324414 0px 0px 5px 0px,#01324414 0px 0px 1px 0px;
+        background-color: #fff;
+        border-radius: .4rem;
+    }
+
+    .create_btn {
+        width: 100%;
+        background-color: #bbdee9;
+        color: #fff;
+        font-weight: 700;
+        font-size: 15px;
+    }
+
+        .create_btn:hover {
+            background: #fff;
+            border: 2px solid #bbdee9;
+            color: #bbdee9;
+        }
+
+    .hd {
+        text-align: left;
+        font-size: 24px;
+        color: #606060;
+        font-weight: 600;
+    }
+
+        .hd::before {
+            content: "";
+            display: inline-block;
+            width: .3rem;
+            height: 1.6rem;
+            border-radius: 2rem;
+            background-color: #acd6e3;
+            margin: 0rem 1rem;
+            padding-bottom: 1.3rem;
+            margin-bottom: -.3rem;
+        }
+</style>
+<link href="~/Content/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<div class="col-12 grid-margin">  
+    <div class="card">
+        <div class="card-body">
+            <h4 class="hd">Party Details</h4>
+            <br />
+            @using (Html.BeginForm("AddParties", "Admin", FormMethod.Post, new { enctype = "multipart/form-data"}))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-sample">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <label class="col-sm-12 col-form-label">Name</label>
+
+                                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control w-full h-10 bg-slate-100 rounded-md flex items-center text-slate-950 text-sm font-medium outline-none border-none px-4" } })
+                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <label class="col-sm-12 col-form-label">Email</label>
+
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control w-full h-10 bg-slate-100 rounded-md flex items-center text-slate-950 text-sm font-medium outline-none border-none px-4" } })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <label class="col-sm-12 col-form-label">Founded Date</label>
+
+                                    @Html.EditorFor(model => model.Founded_date, new { htmlAttributes = new { @class = "form-control w-full h-10 bg-slate-100 rounded-md flex items-center text-slate-950 text-sm font-medium outline-none border-none px-4", @id = "datepicker", @autocomplete = "off" } })
+                                    @Html.ValidationMessageFor(model => model.Founded_date, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <label class="col-sm-12 col-form-label">Leader Name</label>
+                                    @Html.EditorFor(model => model.Leader, new { htmlAttributes = new { @class = "form-control w-full h-10 bg-slate-100 rounded-md flex items-center text-slate-950 text-sm font-medium outline-none border-none px-4" } })
+                                    @Html.ValidationMessageFor(model => model.Leader, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <label class="col-sm-12 col-form-label">ShortCode</label>
+                                    @Html.EditorFor(model => model.Shortcode, new { htmlAttributes = new { @class = "form-control w-full h-10 bg-slate-100 rounded-md flex items-center text-slate-950 text-sm font-medium outline-none border-none px-4" } })
+                                    @Html.ValidationMessageFor(model => model.Shortcode, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <label class="col-sm-12 col-form-label">Party Symbol Image</label>
+                                    <input type="file" name="Symbol_img" id="Symbol_img" class="form-control" />
+                                    @Html.ValidationMessageFor(model => model.Symbol_img, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <label class="col-sm-12 col-form-label">Party Leader Image</label>
+                                    <input type="file" name="Leader_Image" id="Leader_Image" class="form-control" />
+                                    @Html.ValidationMessageFor(model => model.Leader_Image, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <label class="col-sm-12 col-form-label">Party Flag Image</label>
+
+                                    <input type="file" name="Image_file" id="Image_file" class="form-control" />
+                                    @Html.ValidationMessageFor(model => model.Image_file, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-offset-2 col-md-12">
+                            <input type="submit" value="Create" class="btn btn-default create_btn" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

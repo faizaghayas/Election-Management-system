@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "VoterRegister";
+    Layout = "~/Views/shared/_Layout.cshtml";
+}
+<head>
+    <style>
+        .hd{
+            text-align:left;
+        }
+            .hd::before {
+                content: "";
+                display: inline-block;
+                width: .2rem;
+                height: 1.4rem;
+                border-radius: 2rem;
+                background-color: #acd6e3;
+                
+                margin: 0rem 1rem;
+                padding-bottom: 1.3rem;
+                margin-bottom: -.3rem;
+            }
+        .btn-success {
+            color: #359760;
+            border-color: #28a745;
+            background-color: #ffffff !important;
+        }
+     
+    </style>
+</head>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class=" text-center p-3">
+                    <h4 class="hd">Please Enter Your Cnic Number </h4>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("VoterRegister", "Home", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="form-group text-center">
+                            @*<img src="~/Content/assets/images/" width="50px" alt="Picture" class="img-fluid rounded-circle mb-3">*@
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label>CNIC</label>
+                                @Html.TextBox("Cnic", null, new { @class = "form-control", placeholder = "13 digit CNIC number" })
+                            </div>
+                        </div>
+                        <input type="submit" value="Register" style="width: 100%; color: white; background-color: #acd6e3 !important; border-color: #acd6e3; " class="btn btn-block">
+                    }
+
+                </div>
+                    </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,143 @@
+﻿@model Vision_Project.Models.Election
+<link href="~/Content/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+@{
+    ViewBag.Title = "Add Election";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<style>
+    .card_info {
+        width: 100%;
+        box-shadow: #01324414 0px 0px 5px 0px,#01324414 0px 0px 1px 0px;
+        background-color: #fff;
+        border-radius: .4rem;
+    }
+
+    .create_btn {
+        width: 100%;
+        background-color: #bbdee9;
+        color: #fff;
+        font-weight: 700;
+        font-size: 15px;
+    }
+
+        .create_btn:hover {
+            background: #fff;
+            border: 2px solid #bbdee9;
+            color: #bbdee9;
+        }
+
+    .hd {
+        text-align: left;
+        font-size: 24px;
+        color: #606060;
+        font-weight: 600;
+    }
+
+        .hd::before {
+            content: "";
+            display: inline-block;
+            width: .3rem;
+            height: 1.6rem;
+            border-radius: 2rem;
+            background-color: #acd6e3;
+            margin: 0rem 1rem;
+            padding-bottom: 1.3rem;
+            margin-bottom: -.3rem;
+        }
+</style>
+<div class="col-12 grid-margin">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="hd">Election Details</h4>
+            <br />
+            <br />
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-sample">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Name</label>
+                                <div class="col-sm-9">
+                                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control w-full h-10 bg-slate-100 rounded-md flex items-center text-slate-950 text-sm font-medium outline-none border-none px-4" } })
+                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Starting Time</label>
+                                <div class="col-sm-9">
+                                    <div class="input-group date" id="datepickerStart">
+                                        @Html.TextBoxFor(model => model.Start_date, new { @class = "form-control", @id = "datepickerStartInput", @autocomplete = "off" })
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Ending Time</label>
+                                <div class="col-sm-9">
+                                    <div class="input-group date" id="datepickerEnd">
+                                        @Html.TextBoxFor(model => model.End_date, new { @class = "form-control", @id = "datepickerEndInput", @autocomplete = "off" })
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Type Of Election</label>
+                                <div class="col-sm-9">
+                                    @Html.DropDownListFor(model => model.Type_id, ViewBag.TypeList as SelectList, "Select Type", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Type_id, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <label class="col-sm-1 col-form-label">Status</label>
+                                <div class="col-sm-11">
+                                    @Html.DropDownListFor(model => model.U_Status, new SelectList(ViewBag.StatusList as IEnumerable<SelectListItem>, "Value", "Text"), "Select Status", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.U_Status, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-offset-2 col-md-12">
+                            <input type="submit" value="Create" class="btn btn-default create_btn" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+

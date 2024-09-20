@@ -1,0 +1,126 @@
+﻿@{
+    ViewBag.Title = "Voting";
+    Layout = "~/Views/shared/_Layout.cshtml";
+}
+<style>
+    .btn-success {
+        color: #359760;
+        border-color: #28a745;
+        background-color: #ffffff !important;
+    }
+
+    .list-group-item {
+        margin-bottom: 1rem;
+    }
+
+    .modal-body img {
+        margin-bottom: 1rem;
+    }
+
+    .modal-dialog {
+        max-width: 1000px;
+        margin: 2.75rem auto;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        @model List<Vision_Project.Models.Candidate>
+        <ul class="list-group w-100">
+            @foreach (var item in Model)
+            {
+                <li class="list-group-item d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center" >
+                        <img class="rounded-circle mr-3" src="@Url.Content(item.Party.Symbol)"style="aspect-ratio:1/1;" width="80px" height="80px" alt="Symbol" />
+                        <div style="margin-left:.5rem; border-left:1px solid #ddd; padding-left:1.1rem;">
+                            <h5  style="text-transform:capitalize;"class="mb-1">@item.Name</h5>
+                            <p class="mb-1">@item.Party.Name</p>
+                        </div>
+                    </div>
+                    <div>
+                        <a href="#" class="btn btn-success" type="button" data-toggle="modal" data-target="#exampleModal@(item.Id)" style=" width:8rem; height:2.6rem; color: white; background-color: #acd6e3 !important; border-color: #acd6e3; ">Info</a>
+                    </div>
+                </li>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal@(item.Id)" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel@(item.Id)" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header" style="border-bottom:none;" >
+                                <h5 class="modal-title" id="exampleModalLabel@(item.Id)"></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div style="display:flex; justify-content:space-between; align-items:start;flex-direction:column; ">
+                                    <table class="table" border="1" width="50%" style=" border-color: #ddd;">
+                                        <thead>
+
+                                            <tr>
+                                                <th colspan="2" style="text-align:center; font-weight:600; font-size:1.2rem;" >Party Information</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr>
+                                                <th style="width: 35%; text-align: left; font-weight: 600; color: #5c5a5a; ">Candidate Name</th>
+
+                                                <td>@item.Name</td>
+
+
+                                            </tr>
+                                            <tr>
+
+                                                <th style="width: 35%; text-align: left; font-weight: 600; color: #5c5a5a; ">Candidate Area</th>
+                                                <td>@item.Town.Name</td>
+
+                                            </tr>
+
+                                            <tr>
+
+                                                <th style="width: 35%; text-align: left; font-weight: 600; color: #5c5a5a; ">Leader</th>
+                                                <td>@item.Party.Leader</td>
+
+                                            </tr>
+
+                                            <tr>
+
+                                                <th style="width: 35%; text-align: left; font-weight: 600; color: #5c5a5a; ">Party</th>
+                                                <td>@item.Party.Name</td>
+
+                                            </tr>
+
+                                            <tr>
+
+                                                <th style="width: 35%; text-align: left; font-weight: 600; color: #5c5a5a; ">ShortCode</th>
+                                                <td>@item.Party.Shortcode</td>
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                  @*<div>
+                                        <h5>Name : @item.Name</h5>
+                                        <h5>Area : @item.Town.Name</h5>
+                                    </div>*@
+                                
+
+                                </div>
+
+                            </div>
+                            <div class="modal-footer" style="border-top:none;">
+                                @using (Html.BeginForm("SubmitVote", "Home", FormMethod.Post, new { @id = "voteForm" + item.Id ,@style= "width: 100%;" }))
+                                {
+                                    <input type="hidden" name="CandidateId" value="@item.Id" />
+                                    <input type="submit" value="Vote" style="width: 100%; color: white; background-color: #acd6e3; border-color: #acd6e3; " class="btn btn-secondary" />
+                                }
+                             
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </ul>
+    </div>
+</div>

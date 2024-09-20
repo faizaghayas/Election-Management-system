@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e855193950e8458c9920835bc5b2213f" Name="Diagram1">
+        <EntityTypeShape EntityType="VisionModel.Candidate" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VisionModel.Election" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VisionModel.ElectionType" Width="1.5" PointX="1.5" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VisionModel.Party" Width="1.5" PointX="0.75" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VisionModel.Role_TB" Width="1.5" PointX="1.5" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VisionModel.Town" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VisionModel.UserInfo" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="VisionModel.User" Width="1.5" PointX="1.5" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VisionModel.Voter_TB" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VisionModel.Vote" Width="1.5" PointX="7.5" PointY="5" IsExpanded="true" />
+        <AssociationConnector Association="VisionModel.FK__Candidate__Area___5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="VisionModel.FK__Candidate__Elect__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="VisionModel.FK__Candidate__Party__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="VisionModel.FK__Votes__Candidate__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="VisionModel.FK__Election__Type_i__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="VisionModel.FK__Voter_TB__Electi__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="VisionModel.FK__Votes__Election___571DF1D5" ManuallyRouted="false" />
+        <AssociationConnector Association="VisionModel.FK__Parties__User_id__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="VisionModel.FK__Users__Role_id__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="VisionModel.FK__UserInfo__Area_i__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="VisionModel.FK__Voter_TB__Cnic_i__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="VisionModel.FK__Voter_TB__User_i__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="VisionModel.FK__Votes__Voter_id__5629CD9C" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

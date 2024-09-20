@@ -1,0 +1,165 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/shared/_Layout.cshtml";
+}
+
+
+
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h6">Reports</h1>
+            </div>
+
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <h5 style=" padding-left: 2.5rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                            How to Participate in Election
+                        </h5>
+                        <ol style="color: #8a8a8a; line-height: 2.2rem; font-size: 1rem;">
+                            <li>
+                                First of all, Register yourself as a voter Inorder To Vote.
+                            </li>
+                            <li>In Registration, Enter your CNIC to get your information Like Name, Phone, Address,Gender etc.</li>
+                            <li>And you can only vote once so wisely</li>
+
+                            <li>you only have candidates according to your area</li>
+                            <li>After Registration You can go ahead to vote</li>
+
+                            <li>
+                                Then when Election Ends you can see results.
+                            </li>
+
+                            <li>In Results, you'll that Which candidates from your Area Has Won </li>
+
+                          
+                        </ol>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <br />
+
+                @*<div class="row">
+                    <div class="col-md-4">
+                        <div class="card ">
+                            <div class="card-body body_card">
+                                <div class="span_iconn"><i class="fas fa-home iconn"></i> </div>
+                                <div>
+                                    <h5 class="card-title">Voters</h5>
+                                    <p class="card-text">@ViewBag.VoterCount</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card ">
+                            <div class="card-body body_card">
+                                <div class="span_iconn"><i class="fas fa-home iconn"></i> </div>
+                                <div>
+                                    <h5 class="card-title">Candidates</h5>
+                                    <p class="card-text">@ViewBag.CandidateCount</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body body_card">
+                                <div class="span_iconn"><i class="fas fa-home iconn"></i> </div>
+                                <div>
+                                    <h5 class="card-title">Towns</h5>
+                                    <p class="card-text">@ViewBag.LocationCount</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card mt-4">
+                            <div class="card-body">
+                                <h5 class="card-title" style="font-size: 1rem; padding: .8rem 2rem;">Key Performance Indicators</h5>
+                                <div class="row">
+                                    <div class="col-md-2 card_color">
+                                        <p class="card-text text_bold">Revenue</p>
+                                        <p class="card-text">$4,800.00</p>
+                                    </div>
+                                    <div class="col-md-2 card_color">
+                                        <p class="card-text text_bold">Net</p>
+                                        <p class="card-text">$4,900.24</p>
+                                    </div>
+                                    <div class="col-md-2 card_color">
+                                        <p class="card-text text_bold">Pending Orders</p>
+                                        <p class="card-text">$1,600.50</p>
+                                    </div>
+                                    <div class="col-md-2 card_color">
+                                        <p class="card-text text_bold">Due</p>
+                                        <p class="card-text">$6,900.10</p>
+                                    </div>
+                                    <div class="col-md-2 card_color">
+                                        <p class="card-text text_bold">Overdue</p>
+                                        <p class="card-text">$6,500.80</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Chart</h5>
+                                <canvas id="myChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+            </div>
+                @*<div class="table-responsive card" style="border: 1px solid #f3f3f3; border-radius: .4em; padding: 0 1.2rem !important;">
+                    <table class="table " style="padding: 0 1.2rem !important;">
+                        <thead>
+                            <tr>
+                                <th colspan="4" class="border-0">
+                                    <div class="d-flex justify-content-between">
+                                        <h5>Latest Customers</h5>
+                                        <a href="#" class="text-muted">View All</a>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="border-top-0">08 Jul</td>
+                                <td class="border-top-0">Fabiano Jorioz</td>
+                                <td class="border-top-0">2 orders placed<br>$684.45 spent</td>
+                                <td class="border-top-0"><span class="badge badge-onboarded">Onboarded</span></td>
+                            </tr>
+                            <tr>
+                                <td>08 Jul</td>
+                                <td>Meggie Heinonen</td>
+                                <td>0 orders placed<br>$0.00 spent</td>
+                                <td><span class="badge badge-onboarded">Onboarded</span></td>
+                            </tr>
+                            <tr>
+                                <td>07 Jul</td>
+                                <td>Sean Picott</td>
+                                <td>1 orders placed<br>$32.25 spent</td>
+                                <td><span class="badge badge-onboarded">Onboarded</span></td>
+                            </tr>
+                            <tr>
+                                <td>05 Jul</td>
+                                <td>Bell Covely</td>
+                                <td>0 orders placed<br>$0.00 spent</td>
+                                <td><span class="badge badge-onboarded">Onboarded</span></td>
+                            </tr>
+                            <tr>
+                                <td>02 Jul</td>
+                                <td>Giraud Lamlin</td>
+                                <td>1 orders placed<br>$125.70 spent</td>
+                                <td><span class="badge badge-onboarded">Onboarded</span></td>
+                            </tr>
+                        </tbody>
+                    </table>*@

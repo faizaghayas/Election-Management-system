@@ -1,0 +1,677 @@
+﻿
+@model dynamic
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/shared/Adminlayout.cshtml";
+}
+
+<style>
+    .span_iconn {
+        width: 3.2rem;
+        height: 3.2rem;
+        background-color: #f2fcff;
+        border-radius: 50%;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 .3rem;
+        border-right: 2px solid #c7c0c0d9;
+    }
+
+    .iconn {
+        color: #777c7c;
+        font-size: 1.6rem;
+    }
+
+    .boxx {
+        width: 19%;
+        height: 6rem;
+        background-color: #fff;
+        border-radius: 1rem;
+        padding-right: 1.4rem;
+        box-shadow: #00000005 0px 6px 10px;
+    }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="home-tab">
+
+            <div class="tab-content tab-content-basic">
+                <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview">
+                    <div class="row">
+                        <div class="col-sm-12">
+
+
+                            <div class="statistics-details d-flex align-items-center justify-content-around px-3">
+                                <div class="d-flex align-items-center justify-content-around  boxx">
+                                    <div class="span_iconn">
+                                        <i class="mdi mdi-account-group iconn"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="rate-percentage">@ViewBag.PartyCount</h3>
+                                        <p class="statistics-title">Parties</p>
+
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-around boxx">
+                                    <div class="span_iconn">
+                                        <i class="mdi mdi-account-group iconn"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="rate-percentage">@ViewBag.VoterCount</h3>
+                                        <p class="statistics-title">Voters</p>
+                                        @*     <p class="text-danger d-flex"><i class="mdi mdi-menu-down"></i><span>-0.5%</span></p>*@
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-around boxx">
+                                    <div class="span_iconn">
+                                        <i class="mdi mdi-account-group iconn"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="rate-percentage">@ViewBag.CandidateCount</h3>
+                                        <p class="statistics-title">Candidates</p>
+                                        @* <p class="text-danger d-flex"><i class="mdi mdi-menu-down"></i><span>-0.5%</span></p>*@
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-around boxx">
+                                    <div class="span_iconn">
+                                        <i class="mdi mdi-account-group iconn"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="rate-percentage">@ViewBag.CnicCount</h3>
+                                        <p class="statistics-title">Registered Users</p>
+                                        @* <p class="text-danger d-flex"><i class="mdi mdi-menu-down"></i><span>-0.5%</span></p>*@
+                                    </div>
+                                </div>
+                                @*<div class="d-none d-md-block">
+                        <p class="statistics-title">Avg. Time on Site</p>
+                        <h3 class="rate-percentage">2m:35s</h3>
+                        <p class="text-success d-flex"><i class="mdi mdi-menu-down"></i><span>+0.8%</span></p>
+                    </div>
+                    <div class="d-none d-md-block">
+                        <p class="statistics-title">New Sessions</p>
+                        <h3 class="rate-percentage">68.8</h3>
+                        <p class="text-danger d-flex"><i class="mdi mdi-menu-down"></i><span>68.8</span></p>
+                    </div>*@
+                                @*<div class="d-none d-md-block">
+                        <p class="statistics-title">Avg. Time on Site</p>
+                        <h3 class="rate-percentage">2m:35s</h3>
+                        <p class="text-success d-flex"><i class="mdi mdi-menua-down"></i><span>+0.8%</span></p>
+                    </div>*@
+                            </div>
+                        </div>
+                    </div>
+                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+                    <div class="row">
+                        <div class="col-lg-12 d-flex flex-column">
+                            <div class="row flex-grow">
+                                <div class="col-12 col-lg-12 grid-margin stretch-card">
+                                    <div class="card card-rounded">
+                                        <div class="card-body">
+                                            <div>
+                                                <canvas id="myChart"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <script>
+                            const ctx = document.getElementById('myChart');
+
+                            new Chart(ctx, {
+                                type: 'bar',
+                                data: {
+                                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                                    datasets: [{
+                                        label: '# of Votes',
+                                        data: [12, 19, 3, 5, 2, 3],
+                                        borderWidth: 1
+                                    }]
+                                },
+                                options: {
+                                    indexAxis: 'y', // This makes the bars horizontal
+                                    scales: {
+                                        x: { // Adjust the x-axis instead of y-axis for horizontal bars
+                                            beginAtZero: true
+                                        }
+                                    }
+                                }
+                            });
+                        </script>
+
+
+                        @*<div class="col-lg-4 d-flex flex-column">
+                <div class="row flex-grow">
+                    <div class="col-md-6 col-lg-12 grid-margin stretch-card">
+                        <div class="card bg-primary card-rounded">
+                            <div class="card-body pb-0">
+                                <h4 class="card-title card-title-dash text-white mb-4">Status Summary</h4>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <p class="status-summary-ight-white mb-1">Closed Value</p>
+                                        <h2 class="text-info">357</h2>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="status-summary-chart-wrapper pb-4">
+                                            <canvas id="status-summary"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-12 grid-margin stretch-card">
+                        <div class="card card-rounded">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="d-flex justify-content-between align-items-center mb-2 mb-sm-0">
+                                            <div class="circle-progress-width">
+                                                <div id="totalVisitors" class="progressbar-js-circle pr-2"></div>
+                                            </div>
+                                            <div>
+                                                <p class="text-small mb-2">Total Visitors</p>
+                                                <h4 class="mb-0 fw-bold">26.80%</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="circle-progress-width">
+                                                <div id="visitperday" class="progressbar-js-circle pr-2"></div>
+                                            </div>
+                                            <div>
+                                                <p class="text-small mb-2">Visits per day</p>
+                                                <h4 class="mb-0 fw-bold">9065</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+
+                        <div class="row">
+                            <div class="col-lg-12 d-flex flex-column">
+                                @*<div class="row flex-grow">
+                        <div class="col-12 grid-margin stretch-card">
+                            <div class="card card-rounded">
+                                <div class="card-body">
+                                    <div class="d-sm-flex justify-content-between align-items-start">
+                                        <div>
+                                            <h4 class="card-title card-title-dash">Market Overview</h4>
+                                            <p class="card-subtitle card-subtitle-dash">Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+                                        </div>
+                                        <div>
+                                            <div class="dropdown">
+                                                <button class="btn btn-light dropdown-toggle toggle-dark btn-lg mb-0 me-0" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> This month </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                                                    <h6 class="dropdown-header">Settings</h6>
+                                                    <a class="dropdown-item" href="#">Action</a>
+                                                    <a class="dropdown-item" href="#">Another action</a>
+                                                    <a class="dropdown-item" href="#">Something else here</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="#">Separated link</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-sm-flex align-items-center mt-1 justify-content-between">
+                                        <div class="d-sm-flex align-items-center mt-4 justify-content-between">
+                                            <h2 class="me-2 fw-bold">$36,2531.00</h2>
+                                            <h4 class="me-2">USD</h4>
+                                            <h4 class="text-success">(+1.37%)</h4>
+                                        </div>
+                                        <div class="me-3">
+                                            <div id="marketingOverview-legend"></div>
+                                        </div>
+                                    </div>
+                                    <div class="chartjs-bar-wrapper mt-3">
+                                        <canvas id="marketingOverview"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+                                <div class="row flex-grow">
+                                    @*<div class="col-12 grid-margin stretch-card">
+                            <div class="card card-rounded table-darkBGImg">
+                                <div class="card-body">
+                                    <div class="col-sm-8">
+                                        <h3 class="text-white upgrade-info mb-0"> Enhance your <span class="fw-bold">Campaign</span> for better outreach </h3>
+                                        <a href="#" class="btn btn-info upgrade-btn">Upgrade Account!</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+                                </div>
+                                <div class="row flex-grow">
+                                    <div class="col-md-12 grid-margin stretch-card">
+                                        <div class="card card-rounded">
+                                            <div class="card-body">
+                                                <div class="d-sm-flex justify-content-between align-items-start">
+                                                    <div>
+                                                        <h4 class="card-title card-title-dash">Pending Requests</h4>
+                                                        <p class="card-subtitle card-subtitle-dash">You have 50+ new requests</p>
+                                                    </div>
+                                                    <div>
+                                                        <button class="btn btn-primary btn-lg text-white mb-0 me-0" type="button"><i class="mdi mdi-account-plus"></i>Add new member</button>
+                                                    </div>
+                                                </div>
+                                                <div class="table-responsive  mt-1">
+                                                    <table class="table select-table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>
+                                                                    <div class="form-check form-check-flat mt-0">
+                                                                        <label class="form-check-label">
+                                                                            <input type="checkbox" class="form-check-input" aria-checked="false" id="check-all"><i class="input-helper"></i>
+                                                                        </label>
+                                                                    </div>
+                                                                </th>
+                                                                <th>Customer</th>
+                                                                <th>Company</th>
+                                                                <th>Progress</th>
+                                                                <th>Status</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+
+                                                            @foreach (var item in Model.candidatelist)
+                                                            {
+                                                                <tr>
+                                                                    <td>
+                                                                        <div class="form-check form-check-flat mt-0">
+                                                                            <label class="form-check-label">
+                                                                                <input type="checkbox" class="form-check-input" aria-checked="false"><i class="input-helper"></i>
+                                                                            </label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="d-flex ">
+                                                                            <img src="~/Content/assets/images/faces/face1.jpg" alt="">
+                                                                            <div>
+                                                                                <h6>@item.CandidateName</h6>
+                                                                                <p>Head admin</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <h6>@item.PartyName</h6>
+                                                                        <p>company type</p>
+                                                                    </td>
+                                                                    <td>
+                                                                        <h6>@item.Area</h6>
+                                                                        <p>company type</p>
+                                                                    </td>
+                                                                    <td>
+                                                                        <h6>@item.VoteCount</h6>
+                                                                        <p>company type</p>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="badge badge-opacity-warning">In progress</div>
+                                                                    </td>
+                                                                </tr>
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row flex-grow">
+                                    <div class="col-md-12 grid-margin stretch-card">
+                                        <div class="card card-rounded">
+                                            <div class="card-body">
+                                                <div class="d-sm-flex justify-content-between align-items-start">
+                                                    <div>
+                                                        <h4 class="card-title card-title-dash">Pending Requests</h4>
+                                                        <p class="card-subtitle card-subtitle-dash">You have 50+ new requests</p>
+                                                    </div>
+                                                    <div>
+                                                        <button class="btn btn-primary btn-lg text-white mb-0 me-0" type="button"><i class="mdi mdi-account-plus"></i>Add new member</button>
+                                                    </div>
+                                                </div>
+                                                <div class="table-responsive  mt-1">
+                                                    <table class="table select-table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>
+                                                                    <div class="form-check form-check-flat mt-0">
+                                                                        <label class="form-check-label">
+                                                                            <input type="checkbox" class="form-check-input" aria-checked="false" id="check-all"><i class="input-helper"></i>
+                                                                        </label>
+                                                                    </div>
+                                                                </th>
+                                                                <th>Customer</th>
+                                                                <th>Company</th>
+                                                                <th>Progress</th>
+                                                                <th>Status</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="form-check form-check-flat mt-0">
+                                                                        <label class="form-check-label">
+                                                                            <input type="checkbox" class="form-check-input" aria-checked="false"><i class="input-helper"></i>
+                                                                        </label>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="d-flex ">
+                                                                        <img src="~/Content/assets/images/faces/face1.jpg" alt="">
+                                                                        <div>
+                                                                            <h6>Brandon Washington</h6>
+                                                                            <p>Head admin</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <h6>Company name 1</h6>
+                                                                    <p>company type</p>
+                                                                </td>
+                                                                <td>
+                                                                    <div>
+                                                                        <div class="d-flex justify-content-between align-items-center mb-1 max-width-progress-wrap">
+                                                                            <p class="text-success">79%</p>
+                                                                            <p>85/162</p>
+                                                                        </div>
+                                                                        <div class="progress progress-md">
+                                                                            <div class="progress-bar bg-success" role="progressbar" style="width: 85%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="badge badge-opacity-warning">In progress</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="form-check form-check-flat mt-0">
+                                                                        <label class="form-check-label">
+                                                                            <input type="checkbox" class="form-check-input" aria-checked="false"><i class="input-helper"></i>
+                                                                        </label>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="d-flex">
+                                                                        <img src="~/Content/assets/images/faces/face2.jpg" alt="">
+                                                                        <div>
+                                                                            <h6>Laura Brooks</h6>
+                                                                            <p>Head admin</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <h6>Company name 1</h6>
+                                                                    <p>company type</p>
+                                                                </td>
+                                                                <td>
+                                                                    <div>
+                                                                        <div class="d-flex justify-content-between align-items-center mb-1 max-width-progress-wrap">
+                                                                            <p class="text-success">65%</p>
+                                                                            <p>85/162</p>
+                                                                        </div>
+                                                                        <div class="progress progress-md">
+                                                                            <div class="progress-bar bg-success" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="badge badge-opacity-warning">In progress</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="form-check form-check-flat mt-0">
+                                                                        <label class="form-check-label">
+                                                                            <input type="checkbox" class="form-check-input" aria-checked="false"><i class="input-helper"></i>
+                                                                        </label>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="d-flex">
+                                                                        <img src="~/Content/assets/images/faces/face3.jpg" alt="">
+                                                                        <div>
+                                                                            <h6>Wayne Murphy</h6>
+                                                                            <p>Head admin</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <h6>Company name 1</h6>
+                                                                    <p>company type</p>
+                                                                </td>
+                                                                <td>
+                                                                    <div>
+                                                                        <div class="d-flex justify-content-between align-items-center mb-1 max-width-progress-wrap">
+                                                                            <p class="text-success">65%</p>
+                                                                            <p>85/162</p>
+                                                                        </div>
+                                                                        <div class="progress progress-md">
+                                                                            <div class="progress-bar bg-warning" role="progressbar" style="width: 38%" aria-valuenow="38" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="badge badge-opacity-warning">In progress</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="form-check form-check-flat mt-0">
+                                                                        <label class="form-check-label">
+                                                                            <input type="checkbox" class="form-check-input" aria-checked="false"><i class="input-helper"></i>
+                                                                        </label>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="d-flex">
+                                                                        <img src="~/Content/assets/images/faces/face4.jpg" alt="">
+                                                                        <div>
+                                                                            <h6>Matthew Bailey</h6>
+                                                                            <p>Head admin</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <h6>Company name 1</h6>
+                                                                    <p>company type</p>
+                                                                </td>
+                                                                <td>
+                                                                    <div>
+                                                                        <div class="d-flex justify-content-between align-items-center mb-1 max-width-progress-wrap">
+                                                                            <p class="text-success">65%</p>
+                                                                            <p>85/162</p>
+                                                                        </div>
+                                                                        <div class="progress progress-md">
+                                                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="badge badge-opacity-danger">Pending</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="form-check form-check-flat mt-0">
+                                                                        <label class="form-check-label">
+                                                                            <input type="checkbox" class="form-check-input" aria-checked="false"><i class="input-helper"></i>
+                                                                        </label>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="d-flex">
+                                                                        <img src="~/Content/assets/images/faces/face5.jpg" alt="">
+                                                                        <div>
+                                                                            <h6>Katherine Butler</h6>
+                                                                            <p>Head admin</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <h6>Company name 1</h6>
+                                                                    <p>company type</p>
+                                                                </td>
+                                                                <td>
+                                                                    <div>
+                                                                        <div class="d-flex justify-content-between align-items-center mb-1 max-width-progress-wrap">
+                                                                            <p class="text-success">65%</p>
+                                                                            <p>85/162</p>
+                                                                        </div>
+                                                                        <div class="progress progress-md">
+                                                                            <div class="progress-bar bg-success" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="badge badge-opacity-success">Completed</div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row flex-grow">
+                                    <div class="col-md-6 col-lg-6 grid-margin stretch-card">
+                                        <div class="card card-rounded">
+                                            <div class="card-body card-rounded">
+                                                <h4 class="card-title  card-title-dash">Recent Events</h4>
+                                                <div class="list align-items-center border-bottom py-2">
+                                                    <div class="wrapper w-100">
+                                                        <p class="mb-2 fw-medium"> Change in Directors </p>
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                            <div class="d-flex align-items-center">
+                                                                <i class="mdi mdi-calendar text-muted me-1"></i>
+                                                                <p class="mb-0 text-small text-muted">Mar 14, 2019</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="list align-items-center border-bottom py-2">
+                                                    <div class="wrapper w-100">
+                                                        <p class="mb-2 fw-medium"> Other Events </p>
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                            <div class="d-flex align-items-center">
+                                                                <i class="mdi mdi-calendar text-muted me-1"></i>
+                                                                <p class="mb-0 text-small text-muted">Mar 14, 2019</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="list align-items-center border-bottom py-2">
+                                                    <div class="wrapper w-100">
+                                                        <p class="mb-2 fw-medium"> Quarterly Report </p>
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                            <div class="d-flex align-items-center">
+                                                                <i class="mdi mdi-calendar text-muted me-1"></i>
+                                                                <p class="mb-0 text-small text-muted">Mar 14, 2019</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="list align-items-center border-bottom py-2">
+                                                    <div class="wrapper w-100">
+                                                        <p class="mb-2 fw-medium"> Change in Directors </p>
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                            <div class="d-flex align-items-center">
+                                                                <i class="mdi mdi-calendar text-muted me-1"></i>
+                                                                <p class="mb-0 text-small text-muted">Mar 14, 2019</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="list align-items-center pt-3">
+                                                    <div class="wrapper w-100">
+                                                        <p class="mb-0">
+                                                            <a href="#" class="fw-bold text-primary">Show all <i class="mdi mdi-arrow-right ms-2"></i></a>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-6 grid-margin stretch-card">
+                                        <div class="card card-rounded">
+                                            <div class="card-body">
+                                                <div class="d-flex align-items-center justify-content-between mb-3">
+                                                    <h4 class="card-title card-title-dash">Activities</h4>
+                                                    <p class="mb-0">20 finished, 5 remaining</p>
+                                                </div>
+                                                <ul class="bullet-line-list">
+                                                    <li>
+                                                        <div class="d-flex justify-content-between">
+                                                            <div><span class="text-light-green">Ben Tossell</span> assign you a task</div>
+                                                            <p>Just now</p>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="d-flex justify-content-between">
+                                                            <div><span class="text-light-green">Oliver Noah</span> assign you a task</div>
+                                                            <p>1h</p>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="d-flex justify-content-between">
+                                                            <div><span class="text-light-green">Jack William</span> assign you a task</div>
+                                                            <p>1h</p>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="d-flex justify-content-between">
+                                                            <div><span class="text-light-green">Leo Lucas</span> assign you a task</div>
+                                                            <p>1h</p>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="d-flex justify-content-between">
+                                                            <div><span class="text-light-green">Thomas Henry</span> assign you a task</div>
+                                                            <p>1h</p>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="d-flex justify-content-between">
+                                                            <div><span class="text-light-green">Ben Tossell</span> assign you a task</div>
+                                                            <p>1h</p>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="d-flex justify-content-between">
+                                                            <div><span class="text-light-green">Ben Tossell</span> assign you a task</div>
+                                                            <p>1h</p>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                                <div class="list align-items-center pt-3">
+                                                    <div class="wrapper w-100">
+                                                        <p class="mb-0">
+                                                            <a href="#" class="fw-bold text-primary">Show all <i class="mdi mdi-arrow-right ms-2"></i></a>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

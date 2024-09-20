@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "Results";
+    Layout = "~/Views/shared/Adminlayout.cshtml";
+}
+
+@model IEnumerable<Vision_Project.Models.PartyVoteResult>
+
+@if (Model.Any())
+{
+
+    <div class="row">
+        <div class="col-lg-8 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">User Positions</h4>
+                    <p class="card-description">
+
+                    </p>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Party Name
+                                    </th>
+
+
+                                    <th>
+                                        Candidate Name
+                                    </th>
+
+
+                                    <th>
+                                        Area
+                                    </th>
+
+
+                                    <th>
+                                        Vote Count
+                                    </th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <p>
+                                                @item.PartyName
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>
+                                                @item.CandidateName
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>
+                                                @item.Area
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>
+                                                @item.VoteCount
+                                            </p>
+                                        </td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+}
+
+else
+{
+    <p>No results available for the specified party.</p>
+}

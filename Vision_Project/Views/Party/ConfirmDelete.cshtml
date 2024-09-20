@@ -1,0 +1,23 @@
+﻿
+
+
+@model Vision_Project.Models.Candidate
+
+@{
+    ViewBag.Title = "Confirm Delete";
+    Layout = "~/Views/shared/_PartyLayout.cshtml";
+}
+
+<div class="w-full bg-white my-shadow rounded-2xl px-4 py-5 mt-5">
+    <h2 class="text-xl font-semibold mb-4">Confirm Delete</h2>
+    <p>Are you sure you want to delete the candidate <strong>@Model.Name</strong>?</p>
+
+    <div class="mt-4">
+        <form action="@Url.Action("DeleteCandidate", "Party")" method="post">
+            @Html.AntiForgeryToken()
+            @Html.Hidden("id", Model.Id)
+            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded mr-2">Delete</button>
+            <a href="@Url.Action("Index", "Admin")" class="bg-gray-300 text-black px-4 py-2 rounded">Cancel</a>
+        </form>
+    </div>
+</div>

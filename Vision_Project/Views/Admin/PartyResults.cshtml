@@ -1,0 +1,77 @@
+﻿
+@model IEnumerable<Vision_Project.Models.PartyVoteResult>
+
+@{
+    ViewBag.Title = "Party Results";
+    var election = ViewBag.Election as Vision_Project.Models.Election; // Adjust namespace if needed
+    var status = ViewBag.Status as string;
+}
+
+<h2>Party Results</h2>
+
+@*@if (election != null)
+    {
+        <h3>Election: @election.Name (@status)</h3>
+    }*@
+
+@if (Model.Any())
+{
+
+
+    <div class="row">
+        <div class="col-lg-8 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">User Positions</h4>
+                    <p class="card-description">
+
+                    </p>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>VoteCount</th>
+                                    <th>Status</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <p class="text-slate-500 text-xs font-medium py-3 px-2">
+                                                @item.PartyName
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p class="text-slate-500 text-xs font-medium py-3 px-2">
+                                                @item.VoteCount
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p class="text-slate-500 text-xs font-medium py-3 px-2">
+                                                @item.WinOrLoss
+                                            </p>
+                                        </td>
+
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+}
+else
+{
+    <p>No results available.</p>
+}

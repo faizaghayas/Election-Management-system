@@ -1,0 +1,172 @@
+﻿@{
+    ViewBag.Title = "Candidates";
+    Layout = "~/Views/shared/_PartyLayout.cshtml";
+    var userPartyId = (int)Session["User_PartyId"]; 
+    }
+
+
+
+<div class="row">
+    <div class="col-lg-8 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">User Positions</h4>
+                <p class="card-description">
+
+                </p>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>   
+                            <tr>
+                                <th>
+                                    Candidate Name
+                                </th>
+                                <th>
+                                    Party ID
+                                </th>
+                                <th>
+                                    Election ID
+                                </th>
+                                <th>
+                                    Candidate ID
+                                </th>
+                                <th>
+                                    Vote Count
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="tab">
+                           
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- Include Web3.js -->
+<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+
+<script>
+    // Initialize Web3 with a provider (Ensure Ganache or other Ethereum network is running)
+    const web3 = new Web3('http://127.0.0.1:8545');
+
+    // Contract ABI and address
+    const contractABI = [
+        {
+            "inputs": [],
+            "name": "getTotalCandidates",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "_candidateId",
+                    "type": "uint256"
+                }
+            ],
+            "name": "getCandidate",
+            "outputs": [
+                {
+                    "components": [
+                        {
+                            "internalType": "uint256",
+                            "name": "id",
+                            "type": "uint256"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "name",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "partyId",
+                            "type": "uint256"
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "electionId",
+                            "type": "uint256"
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "voteCount",
+                            "type": "uint256"
+                        }
+                    ],
+                    "internalType": "struct Election.Candidate",
+                    "name": "",
+                    "type": "tuple"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        }
+    ];
+
+    const contractAddress = '0x9F24075c1D78b4A55F71F35d7BA4AB27E92A4134'; // Replace with your actual contract address
+    const contract = new web3.eth.Contract(contractABI, contractAddress);
+
+    async function fetchCandidatesByPartyId(userPartyId) {
+        try {
+            // Fetch the total number of candidates from the blockchain
+            const totalCandidates = await contract.methods.getTotalCandidates().call();
+            console.log('Total candidates:', totalCandidates);
+
+            let filteredCandidates = [];
+
+            // Loop through each candidate and fetch details
+            for (let i = 0; i < totalCandidates; i++) {
+                const candidateDetails = await contract.methods.getCandidate(i).call();
+                console.log('Fetched candidate:', candidateDetails);
+
+                // Filter candidates by matching partyId
+                if (parseInt(candidateDetails.partyId) === userPartyId) {
+                    filteredCandidates.push(candidateDetails);
+                }
+            }
+
+            displayCandidates(filteredCandidates);  // Display the filtered candidates
+
+        } catch (error) {
+            console.error('Error fetching candidates from blockchain:', error);
+        }
+    }
+
+    function displayCandidates(candidates) {
+        const tableBody = document.getElementById('tab');
+        tableBody.innerHTML = '';  // Clear the existing table body
+
+        candidates.forEach(candidate => {
+            let row = `
+                <tr>
+                    <td>${candidate.name}</td>
+                    <td>${candidate.partyId}</td>
+                    <td>${candidate.electionId}</td>
+                    <td>${candidate.id}</td>
+                    <td>${candidate.voteCount}</td>
+                </tr>
+            `;
+            tableBody.innerHTML += row;
+        });
+    }
+
+    // Fetch and use the actual Party ID from the backend session to filter candidates
+    const userPartyId = @userPartyId;  // Injected from Razor code above
+    fetchCandidatesByPartyId(userPartyId);
+</script>

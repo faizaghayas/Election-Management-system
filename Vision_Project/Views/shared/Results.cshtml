@@ -1,0 +1,101 @@
+﻿
+@model IEnumerable<Vision_Project.Models.PartyVoteResult>
+
+@{
+   
+    var election = ViewBag.Election as Vision_Project.Models.Election; // Adjust namespace if needed
+    var status = ViewBag.Status as string;
+}
+
+
+
+@*@if (election != null)
+    {
+        <h3>Election: @election.Name (@status)</h3>
+    }*@
+
+<div class="2xl:pl-20 2xl:pr-10 px-6 py-6 w-full mx-auto">
+    <!-- Main Heading -->
+    <div class="flex gap-y-3 items-center justify-between flex-wrap">
+        <div class="">
+            <h1 class="text-2xl sa700 leading-normal text-gray-800">
+               ftglkms/.,
+            </h1>
+
+        </div>
+        <!-- Main Heading Ends  -->
+        <div class="w-full bg-white my-shadow rounded-2xl px-4 py-5 mt-5">
+            <!-- Table -->
+            <div class="overflow-auto my-shadow whitespace-nowrap amount_offer">
+                <table class="w-full bg-white rounded whitespace-nowrap">
+                    <thead>
+                        <tr class="w-full h-10 py-4 px-10 bg-[#F4F6FA] rounded-l-lg">
+                            <th class="text-base font-medium leading-none text-gray-600 md:px-0 px-2 text-left w-[20px] rounded-l-lg">
+                                <div class="flex gap-4 items-center pl-6">
+                                    <input class="styled-checkbox-2"
+                                           id="styled-checkbox-51"
+                                           type="checkbox"
+                                           value="value1" />
+                                    <label for="styled-checkbox-51"
+                                           class="text-gray-500 text-sm"></label>
+                                </div>
+                            </th>
+
+
+                            <th class="text-sm font-medium leading-none text-gray-500 px-2 text-left">
+                                Party Name
+                            </th>
+
+                            <th class="text-sm font-medium leading-none text-gray-500 px-2 text-left">
+                                Vote Count
+                            </th>
+                            <th class="text-sm font-medium leading-none text-gray-500 px-2 text-left">
+                                Status
+                            </th>
+
+                            <th class="text-sm font-medium leading-none text-gray-500 px-2 text-left rounded-r-lg pr-6"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="my-0">
+                                <td class="text-xs leading-none py-3 md:px-0 px-2 text-gray-800 w-5 relative">
+                                    <div class="flex gap-4 items-center pl-6 relative">
+                                        <input class="styled-checkbox-3"
+                                               id="styled-checkbox-56"
+                                               type="checkbox"
+                                               value="value1" />
+                                        <label for="styled-checkbox-56"
+                                               class="text-gray-500 text-sm"></label>
+                                        <!--  -->
+                                        <!--  -->
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="text-slate-500 text-xs font-medium py-3 px-2">
+                                        @item.PartyName
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-slate-500 text-xs font-medium py-3 px-2">
+                                        @item.VoteCount
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-slate-500 text-xs font-medium py-3 px-2">
+                                        @item.WinOrLoss
+                                    </p>
+                                </td>
+
+
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- Table -->
+        </div>
+        </div>
+    <!-- Body -->

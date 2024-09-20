@@ -1,0 +1,116 @@
+﻿@{
+    ViewBag.Title = "Parties List";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-8 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Parties</h4>
+                <p class="card-description">
+
+                </p>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Shortcode</th>
+                                <th>Leader</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tab">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+
+<script>
+
+    const web3 = new Web3('http://127.0.0.1:8545');
+
+    
+    const contractABI = [
+        {
+            "inputs": [],
+            "name": "getAllPartyIds",
+            "outputs": [{ "internalType": "uint256[]", "name": "", "type": "uint256[]" }],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [{ "internalType": "uint256", "name": "_partyId", "type": "uint256" }],
+            "name": "getParty",
+            "outputs": [
+                {
+                    "components": [
+                        { "internalType": "uint256", "name": "id", "type": "uint256" },
+                        { "internalType": "string", "name": "name", "type": "string" },
+                        { "internalType": "string", "name": "email", "type": "string" },
+                        { "internalType": "string", "name": "shortcode", "type": "string" },
+                        { "internalType": "string", "name": "leader", "type": "string" }
+                    ],
+                    "internalType": "struct Election.Party",
+                    "name": "",
+                    "type": "tuple"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        }
+    ];
+
+    // Contract address (replace with your contract's address)
+    const contractAddress = '0x9F24075c1D78b4A55F71F35d7BA4AB27E92A4134';
+    const contract = new web3.eth.Contract(contractABI, contractAddress);
+
+    // Function to fetch and display parties
+    async function fetchParties() {
+        try {
+            // Get all party IDs
+            const partyIds = await contract.methods.getAllPartyIds().call();
+
+            console.log('Party IDs:', partyIds);
+
+            if (partyIds.length === 0) {
+                console.log('No parties found on the blockchain.');
+                return;
+            }
+
+            // Loop through each party ID and fetch its details
+            let rows = '';  // Use a variable to build all rows
+            for (let i = 0; i < partyIds.length; i++) {
+                const partyId = partyIds[i];
+
+                // Fetch party details using the getParty function
+                const partyDetails = await contract.methods.getParty(partyId).call();
+
+                rows += `<tr>
+                            <td>${partyDetails.id}</td>
+                            <td>${partyDetails.name}</td>
+                            <td>${partyDetails.email}</td>
+                            <td>${partyDetails.shortcode}</td>
+                            <td>${partyDetails.leader}</td>
+                        </tr>`;
+            }
+            document.getElementById("tab").innerHTML = rows; // Set all rows at once
+
+        } catch (error) {
+            console.error('Error fetching parties:', error.message);
+        }
+    }
+
+    // Run the function
+    fetchParties();
+</script>

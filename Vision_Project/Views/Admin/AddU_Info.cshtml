@@ -1,0 +1,221 @@
+﻿@model Vision_Project.Models.UserInfo
+
+@{
+    ViewBag.Title = "AddU_Info";
+    Layout = "~/Views/shared/Adminlayout.cshtml";
+}
+
+
+
+<style>
+    .card_info {
+        width: 100%;
+        box-shadow: #01324414 0px 0px 5px 0px,#01324414 0px 0px 1px 0px;
+        background-color: #fff;
+        border-radius: .4rem;
+    }
+    .create_btn {
+        width: 100%;
+        background-color: #bbdee9;
+        color: #fff;
+        font-weight:700;
+        font-size:15px;
+    }
+        .create_btn:hover {
+            background: #fff;
+            border: 2px solid #bbdee9;
+            color: #bbdee9;
+        }
+    .hd {
+        text-align: left;
+        font-size: 24px;
+        color: #606060;
+        font-weight: 600;
+    }
+
+        .hd::before {
+            content: "";
+            display: inline-block;
+            width: .3rem;
+            height: 1.6rem;
+            border-radius: 2rem;
+            background-color: #acd6e3;
+            margin: 0rem 1rem;
+            padding-bottom: 1.3rem;
+            margin-bottom: -.3rem;
+        }
+</style>
+<link href="~/Content/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<div class="col-12 grid-margin">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="hd">User Details</h4>
+            <br />
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-sample">
+                  
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">First Name</label>
+                                <div class="col-sm-9">
+                                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control w-full h-10 bg-slate-100 rounded-md flex items-center text-slate-950 text-sm font-medium outline-none border-none px-4" } })
+                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Last Name</label>
+                                <div class="col-sm-9">
+                                    @Html.EditorFor(model => model.FatherName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.FatherName, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Phone</label>
+                                <div class="col-sm-9">
+                                    @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Date of Birth</label>
+                                <div class="col-sm-9">
+                                    <div class="input-group date" id="datepickerEnd">
+                                        @Html.TextBoxFor(model => model.DOB, new { @class = "form-control", @id = "datepickerEndInput", @autocomplete = "off" })
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">City</label>
+                                <div class="col-sm-9">
+                                    @Html.EditorFor(model => model.Cnic_No, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Cnic_No, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Country</label>
+                                <div class="col-sm-9">
+                                    @Html.EditorFor(model => model.Family_No, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Family_No, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Category</label>
+                                <div class="col-sm-9">
+                                    @Html.DropDownListFor(model => model.Area_id, ViewBag.Area_List as SelectList, "Select Area", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Area_id, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Gender</label>
+                                <div class="col-sm-4">
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            @Html.RadioButtonFor(model => model.Gender, "Female", new { @class = "form-check-input", id = "membershipRadios1", @checked = "checked" })
+                                            Female
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            @Html.RadioButtonFor(model => model.Gender, "Male", new { @class = "form-check-input", id = "membershipRadios2" })
+                                            Male
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <label class="col-sm-1 col-form-label">Address</label>
+                                <div class="col-sm-11">
+                                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-offset-2 col-md-12">
+                            <input type="submit" value="Create" class="btn btn-default create_btn" />
+                        </div>
+                    </div>
+                    </div>
+               }
+            </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
